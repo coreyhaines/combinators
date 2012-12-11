@@ -14,7 +14,7 @@ end
 # Thrush
 
 test "thrush should call in reverse order" do
-  Thrush.call(->(x){x*2}).call(->(x){ x + 1}).(3) == 7
+  Thrush.(->(x){x*2}).(->(x){ x + 1}).(3) == 7
 end
 
 
@@ -23,7 +23,7 @@ end
 test "thrush should allow for storing combination for later application" do
   times_2 = ->(x) { x * 2 }
   plus_2 = ->(x) { x + 2 }
-  times_2_then_plus_2 = Thrush.call(times_2).call(plus_2)
+  times_2_then_plus_2 = Thrush.(times_2).(plus_2)
 
   times_2_then_plus_2.(5) == 12
 end
